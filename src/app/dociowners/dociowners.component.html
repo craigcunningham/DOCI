@@ -1,0 +1,16 @@
+<h2>Owners</h2>
+<div>
+  <label>Owner name:
+    <input #ownerName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(ownerName.value); ownerName.value=''">add</button>
+</div>
+<ul class="dociowners">
+  <li *ngFor="let owner of dociowners">
+    <a routerLink="/dociowner/{{owner.id}}">
+      <span class="badge">{{owner.id}}</span>{{owner.name}}
+    </a>
+    <button class="delete" title="delete owner" (click)="delete(owner)">x</button>
+  </li>
+</ul>
