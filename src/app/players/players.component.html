@@ -6,7 +6,7 @@
   <!-- (click) passes input value to add() and then clears the input -->
   <button (click)="add(playerName.value); playerName.value=''">add</button>
 </div>
-<ul class="players">
+<ul class="list players">
   <li *ngFor="let player of players">
     <a routerLink="/player/{{player.id}}">
       <span class="badge">{{player.id}}</span>{{player.name}}

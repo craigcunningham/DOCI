@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
+import { DociOwner } from '../dociowner';
+import { DociOwnerService } from '../dociowner.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,17 +12,20 @@ import { PlayerService } from '../player.service';
 })
 
 export class DashboardComponent implements OnInit {
-  players: Player[] = [];
+  owners: DociOwner[] = [];
 
-  constructor(private palyerService: PlayerService) { }
+  constructor(
+    private playerService: PlayerService,
+    private dociOwnerServer: DociOwnerService
+    ) { }
 
   ngOnInit() {
-    this.getPlayers();
+    this.getDociOwners();
   }
 
-  getPlayers(): void {
-    this.palyerService.getPlayers()
-        .subscribe(players => this.players = players.slice(1, 5));
+  getDociOwners(): void {
+    this.dociOwnerServer.getDociOwners()
+        .subscribe(owners => this.owners = owners);
   }
 
 }

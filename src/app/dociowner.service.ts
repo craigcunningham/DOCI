@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { DociOwner } from './DociOwner';
+import { DociOwner } from './dociowner';
 import { MessageService } from './message.service';
 import { containerRefreshStart } from '@angular/core/src/render3/instructions';
 
@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DociOwnerService {
-  private dociOwnersUrl = 'api/dociowners';
+  private dociOwnersUrl = 'api/dociOwners';
 
   getDociOwners(): Observable<DociOwner[]> {
     this.messageService.add('DociOwnerService: fetched DociOwners');
@@ -50,7 +50,7 @@ export class DociOwnerService {
   }
 
   deleteDociOwner(dociOwner: DociOwner | number): Observable<DociOwner> {
-    const id = typeof dociOwner === 'number' ? DociOwner : DociOwner.id;
+    const id = typeof dociOwner === 'number' ? DociOwner : dociOwner.id;
     const url = `${this.dociOwnersUrl}/${id}`;
 
     return this.http.delete<DociOwner>(url, httpOptions).pipe(

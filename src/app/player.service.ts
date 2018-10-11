@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Player } from './player';
-import { PLAYERS } from './mock-players';
 import { MessageService } from './message.service';
 import { containerRefreshStart } from '@angular/core/src/render3/instructions';
 

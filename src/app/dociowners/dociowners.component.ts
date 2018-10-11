@@ -7,20 +7,20 @@ import { DociOwnerService } from '../dociowner.service';
 @Component({
   selector: 'app-dociowners',
   templateUrl: './dociowners.component.html',
-  styleUrls: ['./dociowners.component.css']
+  styleUrls: ['../app.component.css', './dociowners.component.css']
 })
 
 export class DociOwnersComponent implements OnInit {
   owners: DociOwner[];
 
-  constructor(private playerService: DociOwnerService) { }
+  constructor(private dociOwnerService: DociOwnerService) { }
 
   ngOnInit() {
     this.getDOCIOwners();
   }
 
   getDOCIOwners(): void {
-    this.DociOwnerService.getPlayers()
+    this.dociOwnerService.getDociOwners()
         .subscribe(owners => this.owners = owners);
   }
 
@@ -28,7 +28,7 @@ export class DociOwnersComponent implements OnInit {
     name = name.trim();
     email = email.trim();
     if (!name) { return; }
-    this.DociOwnerService.addPlayer({ name } as DociOwner)
+    this.dociOwnerService.addDociOwner({ name } as DociOwner)
         .subscribe(owner => {
           this.owners.push(owner);
         });
@@ -36,7 +36,7 @@ export class DociOwnersComponent implements OnInit {
 
   delete(owner: DociOwner): void {
     this.owners = this.owners.filter(o => o !== owner);
-    this.DociOwnerService.deletePlayer(owner).subscribe();
+    this.dociOwnerService.deleteDociOwner(owner).subscribe();
   }
 
 }

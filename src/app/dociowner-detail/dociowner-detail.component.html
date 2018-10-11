@@ -1,3 +1,8 @@
-<p>
-  dociowner-detail works!
-</p>
+<div *ngIf="owner">
+  <h2>{{owner.name}}</h2>
+  <div><span>id:</span>{{ owner.id }}</div>
+  <div><label>name: <input [(ngModel)]="owner.name" placeholder="name"></label></div>
+  <div><label>email: <input [(ngModel)]="owner.email" placeholder="email"></label></div>
+</div>
+<button (click)="save()">save</button>
+<button (click)="goBack()">go back</button>
