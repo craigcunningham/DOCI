@@ -1,6 +1,7 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Player } from './player';
 import { DociOwner } from './dociowner';
+import { DociSeason } from './dociseason';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
@@ -34,7 +35,25 @@ export class InMemoryDataService implements InMemoryDbService {
         { id: 20, name: 'Dan Shedd', email: '' }
       ];
 
-    return {players, dociOwners};
+      const dociTeams = [
+        { id: 1, name: 'But Justice', owner: {id: 1, name: 'Craig Cunningham', email: 'clcunnin@yahoo.com'} },
+        { id: 2, name: 'Sad Sacks' },
+        { id: 3, name: 'Dicks Out for Harambe' },
+        { id: 4, name: 'Liquor Cricket' },
+        { id: 5, name: 'Neon Tetras' },
+        { id: 6, name: 'Chris\'s Mom for $1' },
+        { id: 7, name: 'Butterflies & Daisies' },
+        { id: 8, name: 'Nosferatu' },
+        { id: 9, name: 'Hogan\'s Heroes' },
+        { id: 10, name: 'Barely Legal' }
+      ];
+
+      const dociSeasons = [
+        {id: 1, name: '2017 Season', initialDate: '2017-10-01', supplementalDate: '2017-10-11'},
+        {id: 2, name: '2018 Season', initialDate: '2018-10-02', supplementalDate: '2018-10-12'}
+      ];
+
+    return {players, dociOwners, dociTeams, dociSeasons };
   }
 
   // Overrides the genId method to ensure that a hero always has an id.
@@ -45,7 +64,7 @@ export class InMemoryDataService implements InMemoryDbService {
   // genId(players: Player[]): number {
   //  return players.length > 0 ? Math.max(...players.map(hero => hero.id)) + 1 : 11;
  // }
-  genId(dociOwners: DociOwner[]): number {
-    return dociOwners.length > 0 ? Math.max(...dociOwners.map(owner => owner.id)) + 1 : 11;
+  genId(dociSeasons: DociSeason[]): number {
+    return dociSeasons.length > 0 ? Math.max(...dociSeasons.map(season => season.id)) + 1 : 11;
   }
 }

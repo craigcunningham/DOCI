@@ -4,6 +4,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
+import { DociOwner } from '../dociowner';
 
 @Component({
   selector: 'app-player-search',

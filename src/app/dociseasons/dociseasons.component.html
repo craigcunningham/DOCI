@@ -1,0 +1,9 @@
+<h2>Seasons</h2>
+<ul class="list dociSeasons">
+  <li *ngFor="let season of seasons">
+    <a routerLink="/dociseason/{{season.id}}">
+      <span class="badge">{{season.id}}</span>{{season.name}}
+    </a>
+    <button class="delete" title="delete season" (click)="delete(season)">x</button>
+  </li>
+</ul>

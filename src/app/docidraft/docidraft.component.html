@@ -1,0 +1,4 @@
+<h2>{{ currentTeam.name }} Drafting</h2>
+<app-player-autocomplete #playerSelecter [placeHolder]='placeHolder' (playerSelected)="playerSelected($event)"></app-player-autocomplete>
+<button (click)="saveAndNext($event, playerSelecter)" #nextButton>Next</button>
+<app-docidraftorder (draftOrderSet)="draftOrderSet($event)"></app-docidraftorder>

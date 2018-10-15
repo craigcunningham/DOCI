@@ -1,0 +1,17 @@
+<div *ngIf="team">
+  <h2>{{ team.name }}</h2>
+  <div>
+    <mat-form-field class="mat-full-width">
+      <input matInput [(ngModel)]="team.id" disabled="true" placeholder="Id" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="mat-full-width">
+      <input matInput [(ngModel)]="team.name" placeholder="Team Name" />
+    </mat-form-field>
+  </div>
+  <div>
+    <app-dociowner-search [givenOwner]="team.owner" (ownerSelected)="ownerSelected($event)"></app-dociowner-search>
+  </div>
+<button (click)="save()">save</button>
+<button (click)="goBack()">go back</button>

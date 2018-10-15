@@ -6,7 +6,7 @@ import { PlayerService } from '../player.service';
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
-  styleUrls: ['../app.component.css', './players.component.css']
+  styleUrls: ['./players.component.css']
 })
 
 export class PlayersComponent implements OnInit {

@@ -1,0 +1,11 @@
+<mat-form-field class="mat-full-width">
+  <input #searchBox type="text" placeholder="Owner" aria-label="Number"
+          matInput [formControl]="ownerControl" [matAutocomplete]="auto"
+          (keyup)="search(searchBox.value)">
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+          (optionSelected)="onSelectionChanged($event)">
+    <mat-option *ngFor="let owner of owners$ | async" [value]="owner">
+      {{owner.name}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

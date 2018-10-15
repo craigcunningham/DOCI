@@ -1,0 +1,29 @@
+<div>
+    <h2>{{ season.name }}</h2>
+    <!--<span>id: </span>{{ team.id }}-->
+    <div>
+      <mat-form-field class="mat-full-width">
+        <input matInput [(ngModel)]="season.id" disabled="true" placeholder="Id" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="mat-full-width">
+        <input matInput [(ngModel)]="season.name" placeholder="Season Name" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="mat-full-width">
+        <input matInput [(ngModel)]="season.initialDate" [matDatepicker]="initialDate" placeholder="Inital Date">
+        <mat-datepicker-toggle matSuffix [for]="initialDate"></mat-datepicker-toggle>
+        <mat-datepicker #initialDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="mat-full-width">
+        <input matInput [(ngModel)]="season.supplementalDate" [matDatepicker]="supplementalDate" placeholder="Supplemental Date">
+        <mat-datepicker-toggle matSuffix [for]="supplementalDate"></mat-datepicker-toggle>
+        <mat-datepicker #supplementalDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+  <button (click)="save()">save</button>
+  <button (click)="goBack()">go back</button>

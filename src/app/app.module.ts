@@ -1,9 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { NgDragDropModule } from 'ng-drag-drop';
+import { DragulaModule } from 'ng2-dragula';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatNativeDateModule,
+  MatFormFieldModule,
+  MatAutocompleteModule,
+  MatSidenavModule,
+  MatDatepickerModule,
+  MatMenuModule,
+  MatIconModule,
+  MatCardModule,
+  MatInputModule } from '@angular/material';
+
+
 
 import { AppComponent } from './app.component';
 import { PlayersComponent } from './players/players.component';
@@ -14,6 +31,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlayerSearchComponent } from './player-search/player-search.component';
 import { DociOwnersComponent } from './dociowners/dociowners.component';
 import { DociOwnerDetailComponent } from './dociowner-detail/dociowner-detail.component';
+import { DociTeamsComponent } from './dociteams/dociteams.component';
+import { DociTeamDetailComponent } from './dociteam-detail/dociteam-detail.component';
+import { DociOwnerSearchComponent } from './dociowner-search/dociowner-search.component';
+import { DociSeasonsComponent } from './dociseasons/dociseasons.component';
+import { DociSeasonDetailComponent } from './dociseason-detail/dociseason-detail.component';
+import { DociDraftComponent } from './docidraft/docidraft.component';
+import { DociDraftOrderComponent } from './docidraftorder/docidraftorder.component';
+import { PlayerAutocompleteComponent } from './player-autocomplete/player-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +49,39 @@ import { DociOwnerDetailComponent } from './dociowner-detail/dociowner-detail.co
     DashboardComponent,
     PlayerSearchComponent,
     DociOwnersComponent,
-    DociOwnerDetailComponent
+    DociOwnerDetailComponent,
+    DociTeamsComponent,
+    DociTeamDetailComponent,
+    DociOwnerSearchComponent,
+    DociSeasonsComponent,
+    DociSeasonDetailComponent,
+    DociDraftComponent,
+    DociDraftOrderComponent,
+    PlayerAutocompleteComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatIconModule,
+    MatCardModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+
+    NgDragDropModule.forRoot(),
+    DragulaModule.forRoot(),
+
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )

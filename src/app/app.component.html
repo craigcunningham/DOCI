@@ -1,10 +1,31 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h1>Welcome to {{ title }}!</h1>
+<h1>
+  Welcome to {{ title }}!
+  <button mat-button [matMenuTriggerFor]="appMenu"><i class="material-icons">menu</i></button>
+  <mat-menu #appMenu="matMenu">
+      <button mat-menu-item><a class="navigation" routerLink="/dashboard">Dashboard</a></button>
+      <button mat-menu-item><a class="navigation" routerLink="/dociowners">Owners</a></button>
+      <button mat-menu-item><a class="navigation" routerLink="/dociteams">Teams</a></button>
+      <button mat-menu-item><a class="navigation" routerLink="/dociseasons">Seasons</a></button>
+      <button mat-menu-item><a class="navigation" routerLink="/players">Players</a></button>
+  </mat-menu>
+</h1>
+<!--
 <nav>
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/dociowners">Owners</a>
-    <a routerLink="/players">Players</a>
+  <a routerLink="/dociteams">Teams</a>
+  <a routerLink="/players">Players</a>
 </nav>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened>SideNavContent</mat-sidenav>
+    <mat-sidenav-content mode="side" opened>MainContent</mat-sidenav-content>
+    <mat-sidenav-content mode="side" opened>MainContent</mat-sidenav-content>
+    <mat-sidenav-content mode="side" opened>MainContent</mat-sidenav-content>
+</mat-sidenav-container>
+-->
+
+
 <router-outlet></router-outlet>
 <app-messages></app-messages>
 

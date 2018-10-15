@@ -1,0 +1,9 @@
+<h2>Teams</h2>
+<ul class="list ">
+  <li *ngFor="let team of teams">
+    <a routerLink="/dociteam/{{team.id}}">
+      <span class="badge">{{team.id}}</span>{{team.name}}
+    </a>
+    <button class="delete" title="delete team" (click)="delete(team)">x</button>
+  </li>
+</ul>
