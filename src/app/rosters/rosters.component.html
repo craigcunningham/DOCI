@@ -1,0 +1,24 @@
+<h4>Rosters</h4>
+<table class="table" *ngFor="let team of localTeams">
+  <tr><th colspan="2">{{team.name}}</th></tr>
+  <tr>
+    <td>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            Hitters
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let roster of rosters | filterRostersByTeamName:team.name:'H'">{{roster.player.name}}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            Pitchers
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let roster of rosters | filterRostersByTeamName:team.name:'P'">{{roster.player.name}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>

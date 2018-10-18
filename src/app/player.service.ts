@@ -18,19 +18,15 @@ export class PlayerService {
   private playersUrl = 'api/players';
 
   getPlayers(): Observable<Player[]> {
-    this.messageService.add('PlayerService: fetched players');
     return this.http.get<Player[]>(this.playersUrl)
         .pipe(
-          tap(players => this.log('fetched players')),
           catchError(this.handleError('getPlayers', []))
           );
   }
 
   getPlayer(id: number): Observable<Player> {
-    this.messageService.add(`PlayerService: fetched player id=${id}`);
     const url = `${this.playersUrl}/${id}`;
     return this.http.get<Player>(url).pipe(
-      tap(_ => this.log(`fetched player id=${id}`)),
       catchError(this.handleError<Player>(`getPlayer id=${id}`))
     );
   }

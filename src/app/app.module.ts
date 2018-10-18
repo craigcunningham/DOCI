@@ -39,6 +39,8 @@ import { DociSeasonDetailComponent } from './dociseason-detail/dociseason-detail
 import { DociDraftComponent } from './docidraft/docidraft.component';
 import { DociDraftOrderComponent } from './docidraftorder/docidraftorder.component';
 import { PlayerAutocompleteComponent } from './player-autocomplete/player-autocomplete.component';
+import { RostersComponent } from './rosters/rosters.component';
+import { filterRostersByTeamNamePipe } from './rosters-by-team-name';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { PlayerAutocompleteComponent } from './player-autocomplete/player-autoco
     DociSeasonDetailComponent,
     DociDraftComponent,
     DociDraftOrderComponent,
-    PlayerAutocompleteComponent
+    PlayerAutocompleteComponent,
+    RostersComponent,
+    filterRostersByTeamNamePipe
   ],
   imports: [
     BrowserModule,

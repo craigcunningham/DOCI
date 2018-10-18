@@ -1,6 +1,6 @@
 <h2>Draft Order</h2>
 <ul class="list dociTeams" dragula="teams" [(dragulaModel)]="draftOrder">
-  <li *ngFor="let team of draftOrder">
+  <li [ngClass]="{'currentTeam': team.id === currentTeamId}" *ngFor="let team of draftOrder">
     <a>
     <span class="badge">{{team.id}}</span>{{team.name}}
     </a>

@@ -1,0 +1,9 @@
+.list-group-flush, .list-group {
+  width: 10em;
+  padding: .1rem;
+  margin-left: .1rem;
+}
+.list-group-item {
+  padding: .1rem;
+  margin-left: 0;
+}

@@ -1,4 +1,15 @@
-<h2>{{ currentTeam.name }} Drafting</h2>
-<app-player-autocomplete #playerSelecter [placeHolder]='placeHolder' (playerSelected)="playerSelected($event)"></app-player-autocomplete>
-<button (click)="saveAndNext($event, playerSelecter)" #nextButton>Next</button>
-<app-docidraftorder (draftOrderSet)="draftOrderSet($event)"></app-docidraftorder>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+        <h4>{{currentTeam?.name}} Drafting</h4>
+        <app-player-autocomplete #playerSelecter [placeHolder]='placeHolder' (playerSelected)="playerSelected($event)"></app-player-autocomplete>
+        <button (click)="saveAndNext($event, playerSelecter, rosters)" #nextButton>Next</button>
+        <app-docidraftorder
+            (draftOrderSet)="draftOrderSet($event)"
+            [currentTeamId]="currentTeam?.id"></app-docidraftorder>
+    </div>
+    <div class="col-md-7">
+      <app-rosters [seasonId]="seasonId" [rosters]="rosters" [teams]="draftOrder"></app-rosters>
+    </div>
+  </div>
+</div>

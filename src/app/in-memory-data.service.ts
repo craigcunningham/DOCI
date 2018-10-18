@@ -2,23 +2,24 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Player } from './player';
 import { DociOwner } from './dociowner';
 import { DociSeason } from './dociseason';
+import { Roster } from './roster';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
       const players = [
-        { id: 11, name: 'Khris Davis'},
-        { id: 21, name: 'Ryan Zimmerman'},
-        { id: 31, name: 'Anthony Rendon'},
-        { id: 41, name: 'Max Scherzer'},
-        { id: 51, name: 'Sean Doolittle'},
-        { id: 61, name: 'Mookie Betts'},
-        { id: 71, name: 'Chris Sale'},
-        { id: 81, name: 'Juan Soto'},
-        { id: 81, name: 'Trae Turner'},
-        { id: 101, name: 'Victor Robles'},
-        { id: 111, name: 'Adam Eaton'},
-        { id: 121, name: 'Jacob deGrom'},
-        { id: 131, name: 'Freddie Freeman'}
+        { id: 11, name: 'Khris Davis', position: 'H'},
+        { id: 21, name: 'Ryan Zimmerman', position: 'H'},
+        { id: 31, name: 'Anthony Rendon', position: 'H'},
+        { id: 41, name: 'Max Scherzer', position: 'P'},
+        { id: 51, name: 'Sean Doolittle', position: 'P'},
+        { id: 61, name: 'Mookie Betts', position: 'H'},
+        { id: 71, name: 'Chris Sale', position: 'P'},
+        { id: 81, name: 'Juan Soto', position: 'H'},
+        { id: 81, name: 'Trae Turner', position: 'H'},
+        { id: 101, name: 'Victor Robles', position: 'H'},
+        { id: 111, name: 'Adam Eaton', position: 'H'},
+        { id: 121, name: 'Jacob deGrom', position: 'P'},
+        { id: 131, name: 'Freddie Freeman', position: 'H'}
       ];
 
       const dociOwners = [
@@ -53,7 +54,20 @@ export class InMemoryDataService implements InMemoryDbService {
         {id: 2, name: '2018 Season', initialDate: '2018-10-02', supplementalDate: '2018-10-12'}
       ];
 
-    return {players, dociOwners, dociTeams, dociSeasons };
+      const rosters = [
+        {id: 1,
+          season: {id: 2, name: '2018 Season', initialDate: '2018-10-02', supplementalDate: '2018-10-12'},
+          player: { id: 11, name: 'Khris Davis', position: 'H'},
+          team: { id: 2, name: 'Sad Sacks' },
+          dateAdded: '2018-10-02'},
+        {id: 2,
+          season: {id: 2, name: '2018 Season', initialDate: '2018-10-02', supplementalDate: '2018-10-12'},
+          player: { id: 51, name: 'Sean Doolittle', position: 'P'},
+          team: { id: 1, name: 'But Justice', owner: {id: 1, name: 'Craig Cunningham', email: 'clcunnin@yahoo.com'} },
+          dateAdded: '2018-10-02'}
+      ];
+
+    return {players, dociOwners, dociTeams, dociSeasons, rosters };
   }
 
   // Overrides the genId method to ensure that a hero always has an id.
@@ -64,7 +78,7 @@ export class InMemoryDataService implements InMemoryDbService {
   // genId(players: Player[]): number {
   //  return players.length > 0 ? Math.max(...players.map(hero => hero.id)) + 1 : 11;
  // }
-  genId(dociSeasons: DociSeason[]): number {
-    return dociSeasons.length > 0 ? Math.max(...dociSeasons.map(season => season.id)) + 1 : 11;
+  genId(rosters: Roster[]): number {
+    return rosters.length > 0 ? Math.max(...rosters.map(roster => roster.id)) + 1 : 11;
   }
 }

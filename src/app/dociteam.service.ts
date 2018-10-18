@@ -18,19 +18,15 @@ export class DociTeamService {
   private dociTeamsUrl = 'api/dociTeams';
 
   getDociTeams(): Observable<DociTeam[]> {
-    this.messageService.add('DociTeamService: fetched DociTeams');
     return this.http.get<DociTeam[]>(this.dociTeamsUrl)
         .pipe(
-          tap(DociTeams => this.log('fetched DociTeams')),
           catchError(this.handleError('getDociTeams', []))
           );
   }
 
   getDociTeam(id: number): Observable<DociTeam> {
-    this.messageService.add(`DociTeamService: fetched DociTeam id=${id}`);
     const url = `${this.dociTeamsUrl}/${id}`;
     return this.http.get<DociTeam>(url).pipe(
-      tap(_ => this.log(`fetched DociTeam id=${id}`)),
       catchError(this.handleError<DociTeam>(`getDociTeam id=${id}`))
     );
   }

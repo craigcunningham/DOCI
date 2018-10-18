@@ -44,7 +44,7 @@ export class PlayerAutocompleteComponent implements OnInit {
 
   ngOnInit() {
     this.players$ = this.searchTerms.pipe(
-      debounceTime(300),
+      debounceTime(100),
       distinctUntilChanged(),
       switchMap((term: string) => this.playerService.searchPlayers(term))
     );

@@ -17,19 +17,15 @@ export class DociSeasonService {
   private dociSeasonsUrl = 'api/dociSeasons';
 
   getDociSeasons(): Observable<DociSeason[]> {
-    this.messageService.add('DociSeasonService: fetched DociSeasons');
     return this.http.get<DociSeason[]>(this.dociSeasonsUrl)
         .pipe(
-          tap(DociSeasons => this.log('fetched DociSeasons')),
           catchError(this.handleError('getDociSeasons', []))
           );
   }
 
   getDociSeason(id: number): Observable<DociSeason> {
-    this.messageService.add(`DociSeasonService: fetched DociSeason id=${id}`);
     const url = `${this.dociSeasonsUrl}/${id}`;
     return this.http.get<DociSeason>(url).pipe(
-      tap(_ => this.log(`fetched DociSeason id=${id}`)),
       catchError(this.handleError<DociSeason>(`getDociSeason id=${id}`))
     );
   }

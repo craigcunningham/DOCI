@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 import { DociTeam } from '../dociteam';
 import { DociTeamService } from '../dociteam.service';
@@ -13,6 +13,8 @@ import { DragulaService } from 'ng2-dragula';
 
 export class DociDraftOrderComponent implements OnInit {
   @Output() draftOrderSet = new EventEmitter<DociTeam[]>();
+  @Input() currentTeamId: number;
+  // @Input() draftOrder: DociTeam[];
 
   draftOrder: DociTeam[];
   excludedTeams: DociTeam[];
@@ -35,6 +37,7 @@ export class DociDraftOrderComponent implements OnInit {
       this.currentTeam = teams[0];
       this.draftOrderSet.emit(this.draftOrder);
     });
+
   }
 
   ngOnInit() {
