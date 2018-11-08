@@ -1,5 +1,8 @@
 # DOCI
 
+Project that runs the DOCI (DAFL October Challenge Invitational) League
+For the initial commit, this project only handles the initial roster creation and one supplemental addition for each season. It is not meant to be generalized for all fantasy baseball leagues.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.
 
 ## Development server
