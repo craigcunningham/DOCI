@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DociTeam } from '../dociteam';
@@ -17,7 +17,6 @@ import { Roster } from '../roster';
 })
 export class DociDraftComponent implements OnInit {
   @ViewChild('nextButton') nextButton: ElementRef;
-  @ViewChild('TeamDrafting') teamDrafting: ElementRef;
 
   seasonId: number;
   placeHolder = 'Player to Draft';
@@ -39,21 +38,28 @@ export class DociDraftComponent implements OnInit {
 
   ngOnInit() {
     this.seasonId = +this.route.snapshot.paramMap.get('id');
-    this.dociSeasonService.getDociSeason(this.seasonId).subscribe(s => this.season = s);
-
-    this.rosterService.getRosters(this.seasonId)
-    .subscribe(r => this.rosters = r );
+    this.messageService.add(`docidraft.ts: ${this.seasonId}`);
+    if (this.seasonId === 0) {
+      this.dociSeasonService.getCurrentDociSeason().subscribe(s => this.SeasonReady(s[0]));
+    } else {
+      this.dociSeasonService.getDociSeason(this.seasonId).subscribe(s => this.season = s[0]);
+      this.rosterService.getRostersBySeason(this.seasonId).subscribe(r => this.rosters = r );
+    }
   }
 
+  SeasonReady(season: DociSeason) {
+    this.seasonId = season.id;
+    this.season = season;
+    this.rosterService.getRostersBySeason(this.seasonId).subscribe(r => this.rosters = r);
+  }
   saveAndNext(event, playerSelecter, rostersComponent) {
     const team = this.draftOrder[this.draftIndex];
     const player = this.selectedPlayer;
-    this.messageService.add(`Adding Player: ${player.name} to ${team.name}`);
+//    this.messageService.add(`docidraft.ts Adding Player: ${player.name} to ${team.name} for season ${this.season.id}`);
     this.rosterService.addPlayerToTeam(player, this.season, team, this.season.initialDate)
       .subscribe(r => this.MarkPlayerAdded(r));
 
     playerSelecter.clear();
-    // rostersComponent.refreshData();
 
     // This makes it a snake draft
     if (this.draftInReverseDirection) {
@@ -72,20 +78,17 @@ export class DociDraftComponent implements OnInit {
   }
 
   MarkPlayerAdded(r: Roster) {
-    // this.messageService.add(`Finished Adding player: ${r.player.name} to ${r.team.name}`);
-    this.messageService.add(`Finished Adding player`);
-    this.rosters.push(r);
+    this.rosters.push(r[0]);
+    this.rosters = this.rosters.slice();
   }
 
   draftOrderSet(order: DociTeam[]) {
     this.currentTeam = order[0];
     this.draftOrder = order;
-    this.messageService.add(`draftOrderSet ${this.currentTeam.name}`);
   }
 
   playerSelected(player) {
     this.selectedPlayer = player;
     this.nextButton.nativeElement.focus();
   }
-
 }

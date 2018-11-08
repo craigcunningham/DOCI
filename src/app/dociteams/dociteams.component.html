@@ -1,9 +1,12 @@
-<h2>Teams</h2>
-<ul class="list ">
-  <li *ngFor="let team of teams">
-    <a routerLink="/dociteam/{{team.id}}">
-      <span class="badge">{{team.id}}</span>{{team.name}}
-    </a>
-    <button class="delete" title="delete team" (click)="delete(team)">x</button>
-  </li>
-</ul>
+<div class="container">
+  <h2>Teams <button [routerLink]="['/dociteam/0']" routerLinkActive="router-link-active"  mat-icon-button><i class="material-icons">add</i></button></h2>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let team of teams">
+      {{team.name}}
+      <span class="pull-right button-group">
+        <a class="noDecoration" routerLink="/dociteam/{{team.id}}"><i class="material-icons">edit</i></a>
+        <a class="noDecoration" title="delete team" (click)="delete(team)"><i class="material-icons">delete</i></a>
+    </span>
+    </li>
+  </ul>
+</div>

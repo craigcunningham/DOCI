@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 import { DociTeam } from './dociteam';
 import { MessageService } from './message.service';
-import { containerRefreshStart } from '@angular/core/src/render3/instructions';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -15,13 +15,21 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DociTeamService {
-  private dociTeamsUrl = 'api/dociTeams';
+//  private dociTeamsUrl = 'api/dociTeams';
+  private dociTeamsUrl = environment.apiUrl + '/DociTeams';
 
   getDociTeams(): Observable<DociTeam[]> {
     return this.http.get<DociTeam[]>(this.dociTeamsUrl)
         .pipe(
           catchError(this.handleError('getDociTeams', []))
           );
+  }
+
+  getDociTeamsBySeason(seasonId: number): Observable<DociTeam[]> {
+    const url = `${this.dociTeamsUrl}/BySeason/${seasonId}`;
+    return this.http.get<DociTeam[]>(url).pipe(
+      catchError(this.handleError<DociTeam[]>(`getDociTeam id=${seasonId}`))
+    );
   }
 
   getDociTeam(id: number): Observable<DociTeam> {

@@ -15,11 +15,13 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DociOwnerService {
-  private dociOwnersUrl = 'api/dociOwners';
+  private dociOwnersUrl = 'http://localhost:8000/DociOwners';
+  // private dociOwnersUrl = 'api/dociOwners';
 
-  getDociOwners(): Observable<DociOwner[]> {
-    return this.http.get<DociOwner[]>(this.dociOwnersUrl)
+  getDociOwners(): Observable<string[]> {
+    return this.http.get<string[]>(this.dociOwnersUrl)
         .pipe(
+          tap(owners => this.messageService.add(`Owners fetched: ${owners[0]}`)),
           catchError(this.handleError('getDociOwners', []))
           );
   }
@@ -38,7 +40,7 @@ export class DociOwnerService {
   }
 
   addDociOwner (dociOwner: DociOwner): Observable<DociOwner> {
-    return this.http.post<DociOwner>(this.dociOwnersUrl, DociOwner, httpOptions).pipe(
+    return this.http.post<DociOwner>(this.dociOwnersUrl, dociOwner, httpOptions).pipe(
       catchError(this.handleError<DociOwner>('addDociOwner'))
     );
   }

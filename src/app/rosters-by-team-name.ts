@@ -13,7 +13,7 @@ export class filterRostersByTeamNamePipe implements PipeTransform {
     return rosters.filter(
       function(roster) {
         if (roster) {
-          return roster.team.name === name && roster.player.position === position;
+          return roster.team_name === name && roster.position === position;
         } else {
           return false;
         }

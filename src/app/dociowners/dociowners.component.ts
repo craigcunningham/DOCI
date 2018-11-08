@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatIconRegistry } from '@angular/material';
 
 import { DociOwner } from '../dociowner';
 import { DociOwnerService } from '../dociowner.service';
-// import { DOCIOwnerDetail } from '../dociowner-detail/dociowner-detail.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dociowners',
@@ -13,7 +14,11 @@ import { DociOwnerService } from '../dociowner.service';
 export class DociOwnersComponent implements OnInit {
   owners: DociOwner[];
 
-  constructor(private dociOwnerService: DociOwnerService) { }
+  constructor(
+    private dociOwnerService: DociOwnerService,
+    private iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon('thumbs-up', sanitizer.bypassSecurityTrustResourceUrl('assets/img/examples/thumbup-icon.svg'));
+   }
 
   ngOnInit() {
     this.getDOCIOwners();

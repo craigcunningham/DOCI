@@ -33,7 +33,7 @@ export class PlayerAutocompleteComponent implements OnInit {
   }
 
   onSelectionChanged(event: MatAutocompleteSelectedEvent) {
-    this.messageService.add(`option selected: ${event.option.value.name}`);
+//    this.messageService.add(`option selected: ${event.option.value.name}`);
     this.playerSelected.emit(event.option.value);
   }
 

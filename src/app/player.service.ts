@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import { environment } from '../environments/environment';
 import { Player } from './player';
 import { MessageService } from './message.service';
 import { containerRefreshStart } from '@angular/core/src/render3/instructions';
@@ -15,7 +16,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PlayerService {
-  private playersUrl = 'api/players';
+//  private playersUrl = 'api/players';
+  private playersUrl = environment.apiUrl + '/Players';
 
   getPlayers(): Observable<Player[]> {
     return this.http.get<Player[]>(this.playersUrl)
@@ -59,8 +61,8 @@ export class PlayerService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Player[]>(`${this.playersUrl}/?name=${term}`).pipe(
-      tap(_ => this.log(`found players matching "${term}"`)),
+    return this.http.get<Player[]>(`${this.playersUrl}/SearchByName/${term}`).pipe(
+//      tap(_ => this.log(`found players matching "${term}"`)),
       catchError(this.handleError<Player[]>('searchPlayers', []))
     );
   }

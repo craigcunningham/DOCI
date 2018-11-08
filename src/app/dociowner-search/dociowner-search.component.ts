@@ -33,7 +33,7 @@ export class DociOwnerSearchComponent implements OnInit {
   }
 
   onSelectionChanged(event: MatAutocompleteSelectedEvent) {
-    this.messageService.add(`option selected: ${event.option.value.name}`);
+//    this.messageService.add(`option selected: ${event.option.value.name}`);
     this.ownerSelected.emit(event.option.value);
   }
 

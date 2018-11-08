@@ -1,9 +1,12 @@
-<h2>Seasons</h2>
-<ul class="list dociSeasons">
-  <li *ngFor="let season of seasons">
-    <a routerLink="/dociseason/{{season.id}}">
-      <span class="badge">{{season.id}}</span>{{season.name}}
-    </a>
-    <button class="delete" title="delete season" (click)="delete(season)">x</button>
-  </li>
-</ul>
+<div class="container">
+    <h2>Seasons <button [routerLink]="['/dociseason/0']" routerLinkActive="router-link-active"  mat-icon-button><i class="material-icons">add</i></button></h2>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let season of seasons">
+        {{season.name}}
+        <span class="pull-right button-group">
+          <a class="noDecoration" routerLink="/dociseason/{{season.id}}"><i class="material-icons">edit</i></a>
+          <a class="noDecoration"  (click)="delete(season)"><i class="material-icons">delete</i></a>
+      </span>
+      </li>
+    </ul>
+  </div>

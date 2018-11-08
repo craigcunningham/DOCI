@@ -30,10 +30,16 @@ export class DociSeasonDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     if (id === 0) {
       this.season = new DociSeason();
-    }  else {
+    } else {
       this.dociSeasonService.getDociSeason(id)
-      .subscribe(season => this.season = season);
+      .subscribe(season => this.setSeason(season));
     }
+  }
+
+  setSeason($season: DociSeason): void {
+    this.messageService.add(`season: ${$season[0].initialDate}`);
+    this.season = $season[0];
+    // this.season.initialDate = new Date(this.season.initialDate);
   }
 
   save(): void {
@@ -41,7 +47,6 @@ export class DociSeasonDetailComponent implements OnInit {
       this.dociSeasonService.updateDociSeason(this.season)
       .subscribe(() => this.goBack());
     } else {
-      this.messageService.add('Season Added');
       this.dociSeasonService.addDociSeason(this.season as DociSeason)
       .subscribe();
     }

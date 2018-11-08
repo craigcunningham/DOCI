@@ -12,20 +12,8 @@ import { DociOwnerService } from '../dociowner.service';
 })
 
 export class DashboardComponent implements OnInit {
-  owners: DociOwner[] = [];
-
-  constructor(
-    private playerService: PlayerService,
-    private dociOwnerServer: DociOwnerService
-    ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getDociOwners();
-  }
-
-  getDociOwners(): void {
-    this.dociOwnerServer.getDociOwners()
-        .subscribe(owners => this.owners = owners);
-  }
-
+ }
 }

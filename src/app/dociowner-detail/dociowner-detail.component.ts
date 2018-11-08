@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { DociOwnerService } from '../dociowner.service';
 import { DociOwner } from '../dociowner';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-dociowner-detail',
@@ -16,23 +17,36 @@ export class DociOwnerDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dociOwnerService: DociOwnerService,
+    private messageService: MessageService,
     private location: Location
   ) { }
 
   ngOnInit(): void {
-    this.getPlayer();
+    this.getOwner();
   }
 
-  getPlayer(): void {
+  getOwner(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.dociOwnerService.getDociOwner(id)
-        .subscribe(owner => this.owner = owner);
+    if (id === 0) {
+      this.owner = new DociOwner();
+    } else {
+      this.dociOwnerService.getDociOwner(id)
+          .subscribe(owner => this.owner = owner);
+    }
   }
 
   save(): void {
-    this.dociOwnerService.updateDociOwner(this.owner)
-    .subscribe(() => this.goBack());
+    if (this.owner.id) {
+      this.dociOwnerService.updateDociOwner(this.owner)
+      .subscribe();
+    } else {
+      this.messageService.add(`name: ${this.owner.name}`);
+      this.messageService.add(`email: ${this.owner.email}`);
+      this.dociOwnerService.addDociOwner(this.owner as DociOwner)
+      .subscribe(o => this.owner = o); // () => this.goBack()
+    }
   }
+
 
   goBack(): void {
     this.location.back();

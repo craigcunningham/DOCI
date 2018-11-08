@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { DociSeason } from './dociseason';
 import { MessageService } from './message.service';
+import { environment } from '../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -14,7 +15,8 @@ const httpOptions = {
 })
 
 export class DociSeasonService {
-  private dociSeasonsUrl = 'api/dociSeasons';
+  //  private dociSeasonsUrl = 'api/dociSeasons';
+  private dociSeasonsUrl = environment.apiUrl + '/DociSeasons';
 
   getDociSeasons(): Observable<DociSeason[]> {
     return this.http.get<DociSeason[]>(this.dociSeasonsUrl)
@@ -23,9 +25,18 @@ export class DociSeasonService {
           );
   }
 
+  getCurrentDociSeason(): Observable<DociSeason[]> {
+    const url = `${this.dociSeasonsUrl}/GetCurrentSeason`;
+    return this.http.get<DociSeason[]>(url)
+        .pipe(
+          catchError(this.handleError('getDociSeasons', []))
+          );
+  }
+
   getDociSeason(id: number): Observable<DociSeason> {
     const url = `${this.dociSeasonsUrl}/${id}`;
     return this.http.get<DociSeason>(url).pipe(
+  //    tap((DociSeason1: DociSeason[]) => this.log(`retrieved DociSeason w/ initialDate=${DociSeason1[0].initialDate}`)),
       catchError(this.handleError<DociSeason>(`getDociSeason id=${id}`))
     );
   }

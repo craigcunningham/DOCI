@@ -1,9 +1,11 @@
+<div *ngIf="draftOrder">
 <h2>Draft Order</h2>
-<ul class="list dociTeams" dragula="teams" [(dragulaModel)]="draftOrder">
-  <li [ngClass]="{'currentTeam': team.id === currentTeamId}" *ngFor="let team of draftOrder">
-    <a>
-    <span class="badge">{{team.id}}</span>{{team.name}}
-    </a>
-    <button class="delete" title="Exclude Team From Draft" (click)="delete(team)">x</button>
+<ul class="list-group" dragula="teams" [(dragulaModel)]="draftOrder" (drop)="onDrop()">
+  <li class="list-group-item" [ngClass]="{'currentTeam': team.id === currentTeamId}" *ngFor="let team of draftOrder">
+    {{team.name}}
+    <span class="pull-right button-group">
+      <a class="noDecoration"  (click)="delete(team)" title="Exclude Team From Draft"><i class="material-icons">delete</i></a>
+    </span>
   </li>
 </ul>
+</div>

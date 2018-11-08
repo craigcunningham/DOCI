@@ -18,7 +18,9 @@ import {
   MatMenuModule,
   MatIconModule,
   MatCardModule,
-  MatInputModule } from '@angular/material';
+  MatSelectModule,
+  MatInputModule,
+  MatSelect} from '@angular/material';
 
 
 
@@ -41,6 +43,9 @@ import { DociDraftOrderComponent } from './docidraftorder/docidraftorder.compone
 import { PlayerAutocompleteComponent } from './player-autocomplete/player-autocomplete.component';
 import { RostersComponent } from './rosters/rosters.component';
 import { filterRostersByTeamNamePipe } from './rosters-by-team-name';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DociSupplementalDraftComponent } from './docisupplementaldraft/docisupplementaldraft.component';
+// import 'rxjs/add/operator/takeUntil';
 
 @NgModule({
   declarations: [
@@ -61,7 +66,8 @@ import { filterRostersByTeamNamePipe } from './rosters-by-team-name';
     DociDraftOrderComponent,
     PlayerAutocompleteComponent,
     RostersComponent,
-    filterRostersByTeamNamePipe
+    filterRostersByTeamNamePipe,
+    DociSupplementalDraftComponent
   ],
   imports: [
     BrowserModule,
@@ -81,14 +87,16 @@ import { filterRostersByTeamNamePipe } from './rosters-by-team-name';
     MatIconModule,
     MatCardModule,
     MatDatepickerModule,
+    MatSelectModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
 
     NgDragDropModule.forRoot(),
     DragulaModule.forRoot(),
 
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+//    HttpClientInMemoryWebApiModule.forRoot(
+//      InMemoryDataService, { dataEncapsulation: false }
+//    )
   ],
   providers: [],
   bootstrap: [AppComponent]

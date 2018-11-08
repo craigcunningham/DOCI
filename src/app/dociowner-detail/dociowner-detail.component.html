@@ -1,8 +1,19 @@
-<div *ngIf="owner">
-  <h2>{{owner.name}}</h2>
-  <div><span>id:</span>{{ owner.id }}</div>
-  <div><label>name: <input [(ngModel)]="owner.name" placeholder="name"></label></div>
-  <div><label>email: <input [(ngModel)]="owner.email" placeholder="email"></label></div>
-</div>
+<div *ngIf="owner" class="container">
+  <h2>{{ owner.name }}</h2>
+  <div>
+    <mat-form-field class="mat-full-width">
+      <input matInput [(ngModel)]="owner.id" disabled="true" placeholder="Id" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="mat-full-width">
+      <input matInput [(ngModel)]="owner.name" placeholder="Owner Name" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="mat-full-width">
+      <input matInput type="email" [email]="true" [(ngModel)]="owner.email" placeholder="Owner email" />
+    </mat-form-field>
+  </div>
 <button (click)="save()">save</button>
 <button (click)="goBack()">go back</button>

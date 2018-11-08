@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12">
@@ -6,12 +7,12 @@
         <button mat-button [matMenuTriggerFor]="appMenu"><i class="material-icons">menu</i></button>
         <mat-menu #appMenu="matMenu">
           <button mat-menu-item><a class="navigation" routerLink="/dashboard">Dashboard</a></button>
-          <button mat-menu-item><a class="navigation" routerLink="/docidraft/1">Draft</a></button>
-          <button mat-menu-item><a class="navigation" routerLink="/docisupplementadraft/1">Supplemental Draft</a></button>
+          <button mat-menu-item><a class="navigation" routerLink="/docidraft">Draft</a></button>
+          <button mat-menu-item><a class="navigation" routerLink="/docisupplementaldraft">Supplemental Draft</a></button>
           <button mat-menu-item><a class="navigation" routerLink="/dociowners">Owners</a></button>
-            <button mat-menu-item><a class="navigation" routerLink="/dociteams">Teams</a></button>
-            <button mat-menu-item><a class="navigation" routerLink="/dociseasons">Seasons</a></button>
-            <button mat-menu-item><a class="navigation" routerLink="/players">Players</a></button>
+          <button mat-menu-item><a class="navigation" routerLink="/dociteams">Teams</a></button>
+          <button mat-menu-item><a class="navigation" routerLink="/dociseasons">Seasons</a></button>
+          <button mat-menu-item><a class="navigation" routerLink="/players">Players</a></button>
         </mat-menu>
       </h1>
       <router-outlet></router-outlet>

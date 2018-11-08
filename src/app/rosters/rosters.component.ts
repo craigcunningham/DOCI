@@ -19,9 +19,6 @@ export class RostersComponent implements OnInit, OnChanges {
   constructor(private messageService: MessageService, private rosterService: RosterService) { }
 
   ngOnInit() {
-    // this.seasonId = 1;
-    this.messageService.add(`Init of Rosters SeasonId: ${this.seasonId}`);
-    this.messageService.add(`Init of Rosters rosters: ${this.rosters}`);
     this.setupData();
   }
 
@@ -33,17 +30,21 @@ export class RostersComponent implements OnInit, OnChanges {
         this.teams.push(roster.team);
       }
       */
-      this.localTeams = this.localTeams.sort((team1, team2) => team1.name.localeCompare(team2.name));
-      this.rosters = this.rosters.sort((roster1, roster2) => roster1.team.name.localeCompare(roster2.team.name));
+     this.messageService.add(`setupData: rosters.team_name: ${this.rosters[this.rosters.length - 1].team_name}`);
+     this.messageService.add(`setupData: rosters.team_name: ${this.rosters[0].team_name}`);
+     this.messageService.add(`setupData: rosters Count: ${this.rosters.length}`);
+     this.localTeams = this.localTeams.sort((team1, team2) => team1.name.localeCompare(team2.name));
+      this.rosters = this.rosters.sort((roster1, roster2) => roster1.team_name.localeCompare(roster2.team_name));
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.rosters) {
+    this.messageService.add(`rosters ngOnChanges`);
+//    if (changes.rosters) {
       if (this.teams) {
         this.localTeams = Object.create(this.teams);
       }
       this.setupData();
-    }
+//    }
   }
 }

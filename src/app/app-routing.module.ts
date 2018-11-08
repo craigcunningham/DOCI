@@ -11,6 +11,7 @@ import { DociTeamDetailComponent } from './dociteam-detail/dociteam-detail.compo
 import { DociSeasonsComponent } from './dociseasons/dociseasons.component';
 import { DociSeasonDetailComponent } from './dociseason-detail/dociseason-detail.component';
 import { DociDraftComponent } from './docidraft/docidraft.component';
+import { DociSupplementalDraftComponent } from './docisupplementaldraft/docisupplementaldraft.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -23,6 +24,9 @@ const routes: Routes = [
   { path: 'dociseasons', component: DociSeasonsComponent },
   { path: 'dociseason/:id', component: DociSeasonDetailComponent },
   { path: 'docidraft/:id', component: DociDraftComponent },
+  { path: 'docidraft', component: DociDraftComponent },
+  { path: 'docisupplementaldraft', component: DociSupplementalDraftComponent },
+  { path: 'docisupplementaldraft/:id', component: DociSupplementalDraftComponent },
   { path: 'dashboard', component: DashboardComponent }
 ];
 

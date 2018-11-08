@@ -73,6 +73,26 @@ button.delete {
   color: white;
 }
 
+a:link.noDecoration {
+  text-decoration: none ;
+  color:black;
+}
+a:visited.noDecoration {
+  text-decoration: none ;
+  color:black;
+}
+a:hover.noDecoration
+{
+ color:black;
+ text-decoration:none;
+ cursor:pointer;
+}
+a:active.noDecoration {
+  text-decoration: none ;
+  color:black;
+}
+
+
 /* in-flight clone for Dragula 2 */
 .gu-mirror {
   position: fixed !important;
