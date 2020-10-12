@@ -28,8 +28,8 @@ export class PlayerAutocompleteComponent implements OnInit {
     this.searchTerms.next(term);
   }
 
-  displayFn(owner?: Player): string | undefined {
-    return owner ? owner.name : undefined;
+  displayFn(player?: Player): string | undefined {
+    return player ? player.name.concat(' (', player.position, ')') : undefined;
   }
 
   onSelectionChanged(event: MatAutocompleteSelectedEvent) {

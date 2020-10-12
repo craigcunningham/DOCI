@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { DociOwner } from './dociowner';
 import { MessageService } from './message.service';
 import { containerRefreshStart } from '@angular/core/src/render3/instructions';
+import { environment } from '../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -15,11 +16,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DociOwnerService {
-  private dociOwnersUrl = 'http://localhost:8000/DociOwners';
+  //private dociOwnersUrl = 'http://localhost:8000/DociOwners';
+  private dociOwnersUrl = environment.apiUrl + '/DociOwners';
   // private dociOwnersUrl = 'api/dociOwners';
 
-  getDociOwners(): Observable<string[]> {
-    return this.http.get<string[]>(this.dociOwnersUrl)
+  getDociOwners(): Observable<DociOwner[]> {
+    return this.http.get<DociOwner[]>(this.dociOwnersUrl)
         .pipe(
           tap(owners => this.messageService.add(`Owners fetched: ${owners[0]}`)),
           catchError(this.handleError('getDociOwners', []))
